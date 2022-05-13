@@ -28,14 +28,17 @@ const controlSearch = async () => {
 
 
 //recipe
-const controlRecipe = async () =>{
+const controlRecipe = async () => {
     const id = window.location.hash.replace("#", "");
 
     if(id){
         //prepare UI
-        recipeView.clearRecipe();
+        recipeView.clearRecipe();        
 
         renderLoader(elements.recipe);
+
+        state.search && searchview.activeLinkStyle(id);
+
 
         //create new recipe object
         state.recipe = new Recipe(id);
@@ -73,5 +76,9 @@ elements.searchResPages.addEventListener("click", e => {
 
 
 window.addEventListener("hashchange", () => {
+    controlRecipe();
+})
+
+window.addEventListener("load", () => {
     controlRecipe();
 })

@@ -9,6 +9,12 @@ export const clearResults = () => {
 
 }
 
+export const activeLinkStyle = (id) => {
+    const resARR = [...document.querySelectorAll(".results__link")];
+    resARR.forEach(el => el.classList.remove("results__link--active"));
+    document.querySelector(`a[href = "#${id}"]`).classList.add("results__link--active");
+}
+
 
 const convertTitle = (title, limit = 17) => {
     const newTitle = [];
