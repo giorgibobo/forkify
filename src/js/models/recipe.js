@@ -17,4 +17,29 @@ export default class Recipe{
             alert(error)            
         }      
     }
+
+    parseIngredients(){
+
+        const newIngredients = this.ingredients.map(el => {
+            const unitsLong = ["tablespoons", "tablespoon", "ounces", "ounce", "teaspoons", "teaspoon", "cup"];
+            const unitsShort = ["tbsp", "tbsp", "oz", "oz", "tsp", "tsp", "cup"];
+        
+            //1) uniform unit
+            let ingredient = el.toLowerCase();
+            unitsLong.forEach((unit, index) => {
+                ingredient = ingredient.replace(unit, unitsShort[index])
+
+            })
+
+            //2)remove paranethenses
+            ingredient = ingredient.replace(/ *\(([^)]*)\) */g, " ");
+            
+            return ingredient;
+            
+        });
+
+        this.ingredients = newIngredients;      
+        
+       
+    }
 }

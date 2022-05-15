@@ -43,11 +43,13 @@ const controlRecipe = async () => {
         //create new recipe object
         state.recipe = new Recipe(id);
 
-        try {
-             await state.recipe.getRecipe();
+        try {          
+            await state.recipe.getRecipe();
         } catch (error) {
             alert("recipe error")            
-        }       
+        }
+        
+        state.recipe.parseIngredients();
 
         clearLoader();
 
