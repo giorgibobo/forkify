@@ -82,8 +82,17 @@ export default class Recipe{
 
         });
 
-        this.ingredients = newIngredients;     
-        
-       
+        this.ingredients = newIngredients;    
     }
+
+    calcTime(){
+        const numIng = this.ingredients.length;
+        const periods = Math.ceil(numIng / 3);
+        this.time = periods * 15;
+    }
+
+    calcServings(){
+        this.servings = 4;
+    }
+
 }
