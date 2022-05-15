@@ -3,15 +3,15 @@ import { elements } from "./base";
 export const clearRecipe = () => elements.recipe.innerHTML = "";
 
 
-const createIngredient = ingredient => `
+const createIngredient = ingredientArgs => `
     <li class="recipe__item">
         <svg class="recipe__icon">
             <use href="img/icons.svg#icon-check"></use>
         </svg>
-        <div class="recipe__count">1000</div>
+        <div class="recipe__count">${ingredientArgs.count}</div>
         <div class="recipe__ingredient">
-            <span class="recipe__unit">g</span>
-            ${ingredient}
+            <span class="recipe__unit">${ingredientArgs.unit}</span>
+            ${ingredientArgs.ingredient}
         </div>
     </li> 
 `;
