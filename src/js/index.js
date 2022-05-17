@@ -3,6 +3,7 @@ import Search from "./models/search";
 import { clearLoader, elements, renderLoader } from "./view/base";
 import * as searchview from "./view/searchview";
 import * as recipeView from "./view/recipeView";
+import List from "./models/list";
 
 const state = {};
 window.state = state;
@@ -56,10 +57,20 @@ const controlRecipe = async () => {
         state.recipe.calcServings();
 
         clearLoader();
-
         recipeView.renderRecipe(state.recipe);
-
     }
+}
+
+//shopping list
+const controlList = () => {
+    //create new list
+    if(!state.list) state.list = new List();
+
+    //add each ingredients
+    state.recipe.ingredients.forEach(el => {
+        const item = state.list.addItems(el.count, el.unit, el.ingredient);
+        console.log(item);
+    });
 }
 
 
@@ -101,5 +112,8 @@ elements.recipe.addEventListener("click", e => {
         //button increase
         state.recipe.updateServingIngredient("inc");
         recipeView.updateServingIngredient(state.recipe);
+    }else if(e.target.matches(".recipe__btn__add, .recipe__btn__add *")){
+        controlList();
+
     }
 })
