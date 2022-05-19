@@ -107,6 +107,8 @@ const controlLike = () => {
         //delete like from UI
         likesview.deleteLike(curentId);
     }
+
+    likesview.toggleLikeMenu(state.likes.getLikeNum());
 }
 
 
@@ -154,6 +156,10 @@ window.addEventListener("load", () => {
 
     //restore likes
     state.likes.readStorage();
+
+    state.likes.likes.forEach(like => likesview.renderLike(like));
+
+    likesview.toggleLikeMenu(state.likes.getLikeNum());
 
     controlRecipe();
 })

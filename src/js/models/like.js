@@ -33,4 +33,8 @@ export default class Like{
         if(storage) this.likes = storage;
     }
 
+    getLikeNum(){
+        return this.likes.length;
+    }
+
 }
