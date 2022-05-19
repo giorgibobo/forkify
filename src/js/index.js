@@ -151,6 +151,10 @@ window.addEventListener("hashchange", () => {
 
 window.addEventListener("load", () => {
     state.likes = new Like();
+
+    //restore likes
+    state.likes.readStorage();
+
     controlRecipe();
 })
 
