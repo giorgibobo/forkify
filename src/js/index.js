@@ -61,7 +61,7 @@ const controlRecipe = async () => {
         state.recipe.calcServings();
 
         clearLoader();
-        recipeView.renderRecipe(state.recipe);
+        recipeView.renderRecipe(state.recipe, state.likes.isLiked(id));
     }
 }
 
@@ -92,11 +92,20 @@ const controlLike = () => {
             state.recipe.img
         );
 
+        //toggle button
+        likesview.toggleLikeBtn(true);
+
         likesview.renderLike(newLike);
 
     }else{
         //delete like from the state
         state.likes.deleteLike(curentId);
+
+        //toggle button
+        likesview.toggleLikeBtn(false);
+
+        //delete like from UI
+        likesview.deleteLike(curentId);
     }
 }
 
@@ -141,6 +150,7 @@ window.addEventListener("hashchange", () => {
 })
 
 window.addEventListener("load", () => {
+    state.likes = new Like();
     controlRecipe();
 })
 
