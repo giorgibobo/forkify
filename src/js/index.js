@@ -4,8 +4,10 @@ import { clearLoader, elements, renderLoader } from "./view/base";
 import * as searchview from "./view/searchview";
 import * as recipeView from "./view/recipeView";
 import * as listView from "./view/listView";
+import * as likesview from "./view/likesview";
 import List from "./models/list";
 import Like from "./models/like";
+
 
 const state = {};
 window.state = state;
@@ -89,6 +91,8 @@ const controlLike = () => {
             state.recipe.author, 
             state.recipe.img
         );
+
+        likesview.renderLike(newLike);
 
     }else{
         //delete like from the state
